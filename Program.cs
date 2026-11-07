@@ -163,14 +163,14 @@ namespace Medvedev
             Console.WriteLine("--- Счёт № 1 ---");
             bank1.Access();
             bank1.Conclusion();
-           // Console.WriteLine("Через ToString(): " + bank1);
+           
 
             Console.WriteLine();
             BankAccount bank2 = new BankAccount();
             Console.WriteLine("--- Счёт № 2 ---");
             bank2.Access();
             bank2.Conclusion();
-//Console.WriteLine("Через ToString(): " + bank2);
+
 
             Console.WriteLine("Перевод на другой счет суммой 100 рублей");
 
