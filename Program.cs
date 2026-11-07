@@ -12,7 +12,7 @@ namespace Medvedev
                 
                 if(formattable != null)
                 {
-                    Console.WriteLine($"Объект реализует IFormattable.");
+                    Console.WriteLine($"Объект ({obj}) реализует IFormattable.");
                     return true;
                 }
             }
