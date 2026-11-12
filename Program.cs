@@ -83,6 +83,10 @@ namespace Medvedev
                 Console.Write($"{i + 1}. ");
                 songs[i].Print();
             }
+
+            Console.WriteLine("Сравнение первой и второй песни");
+            bool equals = songs[0].Equals(songs[1]);
+            Console.WriteLine($"{songs[0].Title()} и {songs[1].Title()}" + (equals ? "-Одинаковые" : "-Разные"));
         }
     }
 }
