@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace Medvedev
 {
@@ -12,29 +13,35 @@ namespace Medvedev
             Console.Write("Введите путь к файлу: ");
             string patch = Console.ReadLine();
 
-            string content = Reading(patch);
-
-            string[] lines = content.Split('\n');
-            for (int i = 0;  i < lines.Length; i++)
+            if(!File.Exists(patch))
             {
-                string line = lines[i].Trim();
+                Console.WriteLine("Файл ненайден");
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(patch, Encoding.UTF8);
+
+            string[] mails = new string[lines.Length];
+            int count = 0;
+
+            foreach (string raw in lines)
+            {
+                string line = raw.Trim();
                 if (line.Length == 0) continue;
 
                 p.SearchMail(ref line);
-                Console.WriteLine(line);
-            }
+                if(line.Length > 0) mails[count++] = line;
 
+                Array.Resize(ref mails, count);
+
+                Console.Write("Введите путь к выходному файлу: ");
+                string outputPath = Console.ReadLine();
+
+                File.WriteAllLines(outputPath, mails, Encoding.UTF8);
+            }
+        }
 
         
-        }
-
-        public static string Reading(string patch)
-        {
-            if(!File.Exists(patch)) { Console.WriteLine("Файл не найден"); }
-            
-            return File.ReadAllText(patch);
-        }
-
         public void SearchMail(ref string s)
         {
             int pos = s.IndexOf('#');
